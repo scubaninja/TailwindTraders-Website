@@ -25,12 +25,14 @@ jobs:
       run: dir && dotnet build --configuration Release
 
     - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}\myapp
+      working-directory: Source\Tailwind.Traders.Web
+      run: dotnet publish -c Release -o myapp
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'staging-tailwindtraders-gha'
+        app-name: 'TWDemoActionsStaging'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_2344a7ff06784eb3826beba104e40812 }}
-        package: ${{env.DOTNET_ROOT}}\myapp 
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2344A7FF06784EB3826BEBA104E40812 }}
+        working-directory: Source\Tailwind.Traders.Web  
+        package: myapp 

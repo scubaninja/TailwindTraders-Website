@@ -21,7 +21,8 @@ jobs:
         dotnet-version: '3.1.102'
 
     - name: Build with dotnet
-      run: dir && dotnet build Source\TailwindTraders.Web\Tailwind.Traders.Web.csproj --configuration Release
+      working-directory: Source\TailwindTraders.Web
+      run: dir && dotnet build --configuration Release
 
     - name: dotnet publish
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}\myapp

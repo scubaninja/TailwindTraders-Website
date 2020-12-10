@@ -19,7 +19,11 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.102'
-
+          
+    - name: Install dependencies in client app
+      working-directory: Source\Tailwind.Traders.Web\ClientApp
+      run: npm install
+      
     - name: Build with dotnet
       working-directory: Source\Tailwind.Traders.Web
       run: dir && dotnet build --configuration Release
